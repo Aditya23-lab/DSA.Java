@@ -1,0 +1,75 @@
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int x) {
+        val = x;
+    }
+}
+
+public class Main {
+
+    public static void main(String[] args) {
+        
+
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
+
+        Main sol = new Main();
+
+       
+        boolean result = sol.isCousins(root, 2, 5);
+        System.out.println("Are 2 and 5 cousins? " + result);
+    }
+public boolean isCousins(TreeNode root,int x,int y){
+    TreeNode xx=findNode(root,x);
+    TreeNode yy=findNode(root,y);
+
+
+     
+        return(level(root,xx,0)==level(root,yy,0)) &&(!isSibling(root,xx,yy));
+    
+
+
+}
+TreeNode findNode(TreeNode node ,int x){
+    if (node==null){
+        return null;
+    }
+    if(node.val==x){
+        return node;
+    }
+    TreeNode n=findNode(node.left,x);
+    if(n!=null){
+        return n;
+    }
+    return findNode(node.right,x);
+}
+boolean isSibling(TreeNode node,TreeNode x,TreeNode y){
+    if(node==null){
+        return false;
+    }
+    return(node.left==x &&node.right==y) ||(node.left==y &&node.right==x)|| isSibling(node.left,x,y)||isSibling(node.right,x,y);
+    
+}
+int level(TreeNode node ,TreeNode x,int level){
+    if(node==null){
+        return -1;
+    }
+    if(node==x){
+        return level;
+    }
+    int l=level(node.left,x,level+1);
+    if(l==0){
+        return l;
+    }
+    return level(node.right,x,level+1);
+    
+}
+
+}
+
+
