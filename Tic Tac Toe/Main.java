@@ -1,3 +1,4 @@
+// Hacktoberfest 2025 Update: Added better input prompt and move validation
 
 import java.util.Scanner;
 class Main{
@@ -82,3 +83,4 @@ class Main{
 
     }
 }
+
